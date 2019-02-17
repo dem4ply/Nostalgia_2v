@@ -79,7 +79,7 @@ namespace tests.controller.weapon.gun.turrent
 			{
 				left.assert_collision_enter();
 			}
-			catch ( System.Exception e )
+			catch ( System.Exception )
 			{
 				right.assert_collision_enter();
 			}
