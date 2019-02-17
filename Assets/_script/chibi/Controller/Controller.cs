@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using controller;
-using controller.animator;
+using chibi.controller.actuator;
 using Unity.Entities;
 using System;
 
@@ -13,6 +13,7 @@ namespace chibi.controller
 		protected float _speed;
 
 		public motor.Motor motor;
+		public actuator.Actuador_controller actuator_controller;
 
 		public virtual Vector3 desire_direction
 		{
@@ -38,10 +39,26 @@ namespace chibi.controller
 			}
 		}
 
+		public virtual void activate()
+		{
+			if ( actuator_controller )
+			{
+				actuator_controller.action();
+			}
+			else
+			{
+				Debug.LogError(
+					string.Format(
+						"no esta asignado el actuator controller en '{0}'",
+						helper.game_object.name.full( this ) ) );
+			}
+		}
+
 		protected override void _init_cache()
 		{
 			base._init_cache();
 			load_motors();
+			load_actuator_controller();
 		}
 
 		protected virtual void load_motors()
@@ -55,6 +72,35 @@ namespace chibi.controller
 						"se agrega un motor", name ) );
 				motor = gameObject.AddComponent<motor.Motor>();
 			}
+		}
+
+		protected virtual void load_actuator_controller()
+		{
+			// TODO: deberia de haber una mejor manera de hacer esto
+			if ( !actuator_controller )
+			{
+				actuator_controller = GetComponent<Actuador_controller>();
+				if ( !actuator_controller )
+				{
+					actuator_controller =
+						GetComponentInChildren<Actuador_controller>();
+					if ( !actuator_controller )
+					{
+						Debug.LogError(
+							string.Format(
+								"no se econtro un controller de actuadores en '{0}'",
+								helper.game_object.name.full( this ) ) );
+					}
+				}
+			}
+			if ( actuator_controller )
+				actuator_controller.controller = this;
+			else
+				Debug.LogError(
+					string.Format(
+						"no hay un actuador controller en '{0}'",
+						helper.game_object.name.full( this ) ) );
+
 		}
 	}
 }
