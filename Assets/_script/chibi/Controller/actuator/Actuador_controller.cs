@@ -15,8 +15,20 @@ namespace chibi.controller.actuator
 				current_actuator.action( controller );
 			else
 				Debug.LogError(
-					string.Format( "no hay un actuador en {0}",
+					string.Format( "no hay un actuador en '{0}'",
 					helper.game_object.name.full( this ) ) );
+		}
+
+		private void OnTriggerEnter( Collider other )
+		{
+			var actuator = other.GetComponent<chibi.actuator.Actuator>();
+			if ( actuator )
+				current_actuator = actuator;
+		}
+
+		private void OnTriggerExit( Collider other )
+		{
+			current_actuator = null;
 		}
 	}
 }
