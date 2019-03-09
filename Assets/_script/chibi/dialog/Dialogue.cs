@@ -4,9 +4,10 @@ using UnityEngine;
 
 namespace chibi.dialog
 {
+	[ CreateAssetMenu( menuName="dialogue/base" ) ]
 	public class Dialogue : chibi.Chibi_object
 	{
 		[TextArea( 3, 10 )]
-		public string text;
+		public List<string> texts;
 	}
 }
