@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using chibi.motor;
 
-namespace chibi.controller.npc
+namespace chibi.controller.avatar
 {
 	public class Controller_avatar : Controller
 	{
