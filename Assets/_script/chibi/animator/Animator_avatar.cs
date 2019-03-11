@@ -29,7 +29,6 @@ namespace chibi.animator.avatar
 				// return (Emotions)animator.GetInteger( animator_vars.EMOTION );
 			}
 			set {
-				Debug.Log( value );
 				_emotion = value;
 				animator.SetInteger( animator_vars.EMOTION, (int)value );
 			}

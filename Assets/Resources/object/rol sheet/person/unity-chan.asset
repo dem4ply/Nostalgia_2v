@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c45c70b999f86e6428b9caedc48d8f3a, type: 3}
-  m_Name: player
+  m_Script: {fileID: 11500000, guid: 59e15fd2e8259344fbfd96045c03f6eb, type: 3}
+  m_Name: unity-chan
   m_EditorClassIdentifier: 
-  person: {fileID: 11400000, guid: 32a89d962f58a3446a1d78e11becbe91, type: 2}
-  faction: {fileID: 11400000, guid: 0e0cf1ab4d901e843a50c3dd8433c61c, type: 2}
+  full_name: 

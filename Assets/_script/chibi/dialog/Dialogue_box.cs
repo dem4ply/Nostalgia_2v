@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using chibi.controller.avatar;
 
 namespace chibi.dialog
 {
@@ -15,6 +16,9 @@ namespace chibi.dialog
 
 		public UnityEngine.UI.Text dialogue_box;
 
+		public List<Transform> place_of_actors;
+		protected List<Controller_avatar> _instanciate_actors;
+
 		public string current_text
 		{
 			get {
@@ -22,10 +26,36 @@ namespace chibi.dialog
 			}
 		}
 
+		public List<Controller_avatar> avatars
+		{
+			get {
+				return dialogues.avatars;
+			}
+		}
+
+		public List<Controller_avatar> actors
+		{
+			get {
+				try
+				{
+					return dialogues.actors[ current_dialogue ].actors;
+				}
+				catch ( System.IndexOutOfRangeException )
+				{
+					return null;
+				}
+				catch ( System.NullReferenceException )
+				{
+					return null;
+				}
+			}
+		}
+
 		public void start_dialogue()
 		{
 			put_texy = true;
 			dialogue_box.text = "";
+			set_actors_in_place();
 		}
 
 		public void pull_all_text()
@@ -43,6 +73,7 @@ namespace chibi.dialog
 			{
 				total_delta_time = 0f;
 				put_texy = true;
+				set_actors_in_place();
 			}
 		}
 
@@ -55,6 +86,31 @@ namespace chibi.dialog
 			{
 				total_delta_time = 0f;
 				put_texy = true;
+				set_actors_in_place();
+			}
+		}
+
+		public void set_actors_in_place()
+		{
+			var actors = this.actors;
+			if ( actors == null )
+				return;
+			for ( int i = 0; i < _instanciate_actors.Count; ++i )
+			{
+				Destroy( _instanciate_actors[ i ].gameObject );
+				_instanciate_actors[ i ] = null;
+			}
+			for ( int i = 0; i < actors.Count; ++i )
+			{
+				var actor = actors[ i ];
+				if ( !actor )
+				{
+					continue;
+				}
+				var place = place_of_actors[ i ];
+				var avatar = helper.instantiate.parent<Controller_avatar>(
+					actor, place, true );
+				_instanciate_actors.Add( avatar );
 			}
 		}
 
@@ -71,6 +127,7 @@ namespace chibi.dialog
 					string.Format(
 						"the dialog box {0} no have dialogues",
 						helper.game_object.name.full( this ) ) );
+			_instanciate_actors = new List<Controller_avatar>();
 		}
 	}
 }

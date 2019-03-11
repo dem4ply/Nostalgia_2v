@@ -8,6 +8,7 @@ namespace chibi.rol_sheet
 	{
 		public Person person;
 		public Faction faction;
+		public Sprite avatar;
 	}
 }
 

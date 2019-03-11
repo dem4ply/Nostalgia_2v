@@ -23,11 +23,6 @@ namespace chibi.systems.dialog
 					float total_of_letters =
 						( dialogue.letters_by_second * dialogue.total_delta_time );
 
-					Debug.Log( string.Format(
-						"current_letters {1}, letters {0}, length: {2}",
-						total_of_letters,
-						dialogue.letters_by_second * dialogue.total_delta_time,
-						dialogue.current_text.Length ) );
 					dialogue.dialogue_box.text = dialogue.current_text.Substring(
 						0, Mathf.RoundToInt( total_of_letters ) );
 
