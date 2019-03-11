@@ -7,12 +7,8 @@ using System;
 
 namespace chibi.motor.avatar
 {
-	public enum Emotions
-	{
-		normal, normal_close_eye, angry, hurt, surprised, happy,
-	}
 	public class Motor_avatar : Motor
 	{
-		public Emotions emotion;
+		public animator.avatar.Emotions emotion;
 	}
 }
