@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using chibi.controller.weapon.gun.bullet;
+using rol_sheet;
 
 namespace chibi.controller.npc
 {
@@ -11,7 +12,7 @@ namespace chibi.controller.npc
 		public chibi.controller.npc.Controller_npc npc;
 		public Transform hold_turrent_position;
 
-		public rol_sheet.Rol_sheet rol;
+		public Rol_sheet rol;
 
 		public bool is_using_turrent = false;
 
@@ -72,7 +73,7 @@ namespace chibi.controller.npc
 		protected override void _init_cache()
 		{
 			base._init_cache();
-			rol = GetComponent< rol_sheet.Rol_sheet >();
+			rol = GetComponent< Rol_sheet >();
 			if ( !rol )
 				Debug.LogError( string.Format(
 					"[soldier controller] no encontro un 'Rol_sheet' en {0}",
