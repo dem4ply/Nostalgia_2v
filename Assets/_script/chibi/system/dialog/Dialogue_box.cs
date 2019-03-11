@@ -23,12 +23,16 @@ namespace chibi.systems.dialog
 					float total_of_letters =
 						( dialogue.letters_by_second * dialogue.total_delta_time );
 
-					dialogue.dialogue_box.text = dialogue.current_text.Substring(
-						0, Mathf.RoundToInt( total_of_letters ) );
-
 					// detener el calculo cuando escriba todas las letras
-					if ( total_of_letters == dialogue.current_text.Length )
+					if ( total_of_letters >= dialogue.current_text.Length )
+					{
 						dialogue.put_texy = false;
+						dialogue.pull_all_text();
+					}
+					else
+						dialogue.dialogue_box.text = dialogue.current_text.Substring(
+							0, Mathf.RoundToInt( total_of_letters ) );
+
 				}
 			}
 		}

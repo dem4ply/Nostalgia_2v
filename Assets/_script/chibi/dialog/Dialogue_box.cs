@@ -48,6 +48,10 @@ namespace chibi.dialog
 				{
 					return null;
 				}
+				catch ( System.ArgumentOutOfRangeException )
+				{
+					return null;
+				}
 			}
 		}
 
@@ -93,13 +97,15 @@ namespace chibi.dialog
 		public void set_actors_in_place()
 		{
 			var actors = this.actors;
-			if ( actors == null )
-				return;
 			for ( int i = 0; i < _instanciate_actors.Count; ++i )
 			{
+				if ( !_instanciate_actors[ i ] )
+					continue;
 				Destroy( _instanciate_actors[ i ].gameObject );
 				_instanciate_actors[ i ] = null;
 			}
+			if ( actors == null )
+				return;
 			for ( int i = 0; i < actors.Count; ++i )
 			{
 				var actor = actors[ i ];
@@ -109,7 +115,7 @@ namespace chibi.dialog
 				}
 				var place = place_of_actors[ i ];
 				var avatar = helper.instantiate.parent<Controller_avatar>(
-					actor, place, true );
+					actor, place, true, "avatar" );
 				_instanciate_actors.Add( avatar );
 			}
 		}
