@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using chibi.weapon.gun;
+using rol_sheet;
 
 namespace chibi.controller.weapon.gun.turrent
 {
@@ -8,8 +9,8 @@ namespace chibi.controller.weapon.gun.turrent
 	{
 		Gun[] guns;
 
-		protected rol_sheet.Rol_sheet _owner;
-		public rol_sheet.Rol_sheet owner
+		protected Rol_sheet _owner;
+		public Rol_sheet owner
 		{
 			get {
 				return _owner;

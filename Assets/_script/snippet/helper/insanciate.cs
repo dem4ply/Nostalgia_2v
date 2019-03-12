@@ -14,6 +14,14 @@ namespace helper {
 			result.transform.parent = parent_target;
 			return result;
 		}
+
+		public static GameObject parent(
+			GameObject original, Transform parent_target, string name )
+		{
+			GameObject result = _( original, name );
+			result.transform.parent = parent_target;
+			return result;
+		}
 		
 		public static GameObject parent(
 			GameObject original, GameObject parent_target )
@@ -36,6 +44,17 @@ namespace helper {
 			}
 			return result;
 		}
+
+		public static GameObject parent(
+			GameObject original, Transform parent_target, bool reset_pos,
+			string name )
+		{
+			GameObject result = parent( original, parent_target, name );
+			if ( reset_pos ){
+				result.transform.localPosition = Vector3.zero;
+			}
+			return result;
+		}
 		
 		public static GameObject parent(
 				GameObject original, GameObject parent_target, bool reset_pos )
@@ -50,11 +69,26 @@ namespace helper {
 			result.transform.parent = parent;
 			return result;
 		}
-		
+
+		public static T parent<T>( T original, Transform parent, string name )
+			where T : MonoBehaviour
+		{
+			T result = parent<T>( original, parent );
+			result.name = name;
+			return result;
+		}
+
 		public static T parent<T>( T original, GameObject parent_target )
 			where T : MonoBehaviour
 		{
 			return parent<T>( original, parent_target.transform );
+		}
+		
+		public static T parent<T>(
+			T original, GameObject parent_target, string name )
+			where T : MonoBehaviour
+		{
+			return parent<T>( original, parent_target.transform, name );
 		}
 		
 		public static T parent<T>(
@@ -67,6 +101,17 @@ namespace helper {
 			}
 			return result;
 		}
+
+		public static T parent<T>(
+			T original, Transform parent_target, bool reset_pos, string name )
+			where T : MonoBehaviour
+		{
+			T result = parent<T>( original, parent_target, name );
+			if ( reset_pos ){
+				result.transform.localPosition = Vector3.zero;
+			}
+			return result;
+		}
 		
 		public static T parent<T>(
 			T original, GameObject parent_target, bool reset_pos )
@@ -74,10 +119,26 @@ namespace helper {
 		{
 			return parent<T>( original, parent_target.transform, reset_pos );
 		}
+
+		public static T parent<T>(
+			T original, GameObject parent_target, bool reset_pos,
+			string name )
+			where T : MonoBehaviour
+		{
+			return parent<T>(
+				original, parent_target, reset_pos, name );
+		}
 		
 		public static T _<T>( T obj ) where T : MonoBehaviour
 		{
 			return MonoBehaviour.Instantiate( obj ) as T;
+		}
+
+		public static T _<T>( T obj, string name ) where T : MonoBehaviour
+		{
+			var result = _<T>( obj );
+			result.name = name;
+			return result;
 		}
 		
 		public static T _<T>( T obj, Vector3 pos ) where T : MonoBehaviour
@@ -98,6 +159,13 @@ namespace helper {
 		public static GameObject _( GameObject obj )
 		{
 			return MonoBehaviour.Instantiate( obj ) as GameObject;
+		}
+
+		public static GameObject _( GameObject obj, string name )
+		{
+			var result = _( obj );
+			result.name = name;
+			return result;
 		}
 		
 		public static GameObject _( GameObject obj, Vector3 pos )
@@ -248,6 +316,13 @@ namespace helper {
 			{
 				GameObject result = _( obj, pos );
 				result.transform.rotation = rot;
+				return result;
+			}
+
+			public static GameObject _( GameObject obj, string name )
+			{
+				GameObject result = _( obj );
+				result.name = name;
 				return result;
 			}
 		}

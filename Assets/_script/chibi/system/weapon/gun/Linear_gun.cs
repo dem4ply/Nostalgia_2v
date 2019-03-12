@@ -6,7 +6,9 @@ namespace chibi.systems.weapon.gun
 {
 	public class Linear_gun : Gun
 	{
+#pragma warning disable CS0108 // El miembro oculta el miembro heredado.
 		protected struct Group
+#pragma warning restore CS0108 // El miembro oculta el miembro heredado.
 		{
 			public chibi.weapon.gun.Linear_gun gun;
 		}
