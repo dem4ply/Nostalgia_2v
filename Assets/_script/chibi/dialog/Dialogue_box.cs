@@ -55,6 +55,28 @@ namespace chibi.dialog
 			}
 		}
 
+		public List<Actor_propeties> actors_propeties
+		{
+			get {
+				try
+				{
+					return dialogues.actors[ current_dialogue ].propierties;
+				}
+				catch ( System.IndexOutOfRangeException )
+				{
+					return null;
+				}
+				catch ( System.NullReferenceException )
+				{
+					return null;
+				}
+				catch ( System.ArgumentOutOfRangeException )
+				{
+					return null;
+				}
+			}
+		}
+
 		public void start_dialogue()
 		{
 			put_texy = true;
@@ -117,6 +139,27 @@ namespace chibi.dialog
 				var avatar = helper.instantiate.parent<Controller_avatar>(
 					actor, place, true, "avatar" );
 				_instanciate_actors.Add( avatar );
+				var properties = actors_propeties;
+				if ( properties == null )
+					continue;
+				try
+				{
+					var propertie = properties[ i ];
+					if ( propertie != null )
+						avatar.set_properties( propertie );
+				}
+				catch ( System.IndexOutOfRangeException )
+				{
+					continue;
+				}
+				catch ( System.NullReferenceException )
+				{
+					continue;
+				}
+				catch ( System.ArgumentOutOfRangeException )
+				{
+					continue;
+				}
 			}
 		}
 
