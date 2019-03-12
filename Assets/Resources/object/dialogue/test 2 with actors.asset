@@ -21,8 +21,16 @@ MonoBehaviour:
   actors:
   - actors:
     - {fileID: 5193714586379861246, guid: 3d9e8450e851945448337e6a24f93fc5, type: 3}
+    propierties:
+    - mirrored: 1
+      emotion: 5
   - actors:
     - {fileID: 0}
     - {fileID: 5193714586379861246, guid: 3d9e8450e851945448337e6a24f93fc5, type: 3}
+    propierties:
+    - mirrored: 0
+      emotion: 0
+    - mirrored: 0
+      emotion: 3
   avatars:
   - {fileID: 5193714586379861246, guid: 3d9e8450e851945448337e6a24f93fc5, type: 3}

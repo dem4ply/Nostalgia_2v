@@ -86,6 +86,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   debug_mode: 0
   motor: {fileID: 0}
+  animator: {fileID: 0}
 --- !u!114 &5193714586379861240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -121,6 +122,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   debug_mode: 0
   animator: {fileID: 5193714586379861245}
+  transform_avatar: {fileID: 5193714586706967407}
   _emotion: 0
 --- !u!114 &7766167848146741732
 MonoBehaviour:

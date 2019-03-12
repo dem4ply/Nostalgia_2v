@@ -56,8 +56,8 @@ namespace tests.dialog
 			yield return new WaitForSeconds( 0.1f );
 			Transform place_1 = dialogue_box.place_of_actors[0];
 			var avatar = place_1.Find( "avatar" );
-			var model = place_1.Find( "model" );
-			Assert.AreEqual( model.localScale.y, -1 );
+			var model = avatar.Find( "model" );
+			Assert.AreEqual( model.localScale.x, -1 );
 			//var image = model.GetComponent<Image>();
 			//Assert.IsNotNull( avatar );
 			yield return new WaitForSeconds( 1f );
@@ -77,8 +77,8 @@ namespace tests.dialog
 			Transform place_2 = dialogue_box.place_of_actors[1];
 			var avatar = place_2.Find( "avatar" );
 			Assert.IsNotNull( avatar );
-			var model = place_2.Find( "model" );
-			Assert.AreEqual( model.localScale.y, 1 );
+			var model = avatar.Find( "model" );
+			Assert.AreEqual( model.localScale.x, 1 );
 			yield return new WaitForSeconds( 1f );
 		}
 
