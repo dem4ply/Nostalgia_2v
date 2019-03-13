@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace helper
 {
@@ -19,6 +21,39 @@ namespace helper
 				if ( result != null )
 					return result.gameObject;
 				return null;
+			}
+
+			public static List<GameObject> regex( GameObject obj, string string_regex )
+			{
+				var r = new Regex( string_regex, RegexOptions.Compiled );
+				return regex( obj, r );
+			}
+
+			public static List<GameObject> regex( GameObject obj, Regex r )
+			{
+				var transforms = regex( obj.transform, r );
+				var result = new List<GameObject>();
+				if ( transforms.Count > 0 )
+				{
+					foreach ( Transform t in transforms )
+						result.Add( t.gameObject );
+				}
+				return result;
+			}
+
+			public static List<Transform> regex( Transform obj, Regex r )
+			{
+				var result = new List<Transform>();
+				for ( int i = 0; i < obj.childCount; ++i )
+				{
+					var child = obj.GetChild( i );
+					if ( r.IsMatch( child.name ) )
+						result.Add( child );
+					var child_result = regex( child, r );
+					if ( child_result.Count > 0 )
+						result.AddRange( child_result );
+				}
+				return result;
 			}
 
 			public static Transform _( Transform obj, string name )
@@ -42,6 +77,21 @@ namespace helper
 				if ( result != null )
 					return result.GetComponent<T>();
 				return null;
+			}
+
+			public static List<T> regex<T>( GameObject obj, string r )
+				where T : MonoBehaviour
+			{
+				var game_objects = regex( obj, r );
+				var results = new List<T>();
+				if ( game_objects.Count > 0 )
+					foreach ( var t in game_objects )
+					{
+						var component = t.GetComponent<T>();
+						if ( component )
+							results.Add( component );
+					}
+				return results;
 			}
 
 			public static ( T, T ) _<T>(

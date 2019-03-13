@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 
-namespace chibi.inventary
+namespace chibi.inventory
 {
 	public class Item: chibi.Chibi_behaviour
 	{

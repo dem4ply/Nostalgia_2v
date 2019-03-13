@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Item : MonoBehaviour {
+public class Item_2 : MonoBehaviour {
 
 	public bool is_stackable;
 	public int amount;
