@@ -17,6 +17,15 @@ namespace chibi.inventary
 		{
 			throw new System.NotImplementedException();
 		}
+
+		protected override void _init_cache()
+		{
+			base._init_cache();
+			if ( !item )
+				Debug.LogError( string.Format(
+					"el item '{0}' no tiene asignado el chibi object de items",
+					helper.game_object.name.full( this ) ) );
+		}
 	}
 }
 
