@@ -6,6 +6,7 @@ namespace chibi.inventory.item
 	[ CreateAssetMenu( menuName="chibi/inventary/item/base" ) ]
 	public class Item: chibi.Chibi_object
 	{
+		[AssetIcon]
 		public Sprite image;
 		public string description;
 		public chibi.inventory.Item prefab;
