@@ -86,7 +86,7 @@ namespace chibi.controller
 						GetComponentInChildren<Actuador_controller>();
 					if ( !actuator_controller )
 					{
-						Debug.LogError(
+						Debug.LogWarning(
 							string.Format(
 								"no se econtro un controller de actuadores en '{0}'",
 								helper.game_object.name.full( this ) ) );
@@ -96,7 +96,7 @@ namespace chibi.controller
 			if ( actuator_controller )
 				actuator_controller.controller = this;
 			else
-				Debug.LogError(
+				Debug.LogWarning(
 					string.Format(
 						"no hay un actuador controller en '{0}'",
 						helper.game_object.name.full( this ) ) );
