@@ -7,8 +7,6 @@ namespace chibi.radar
 	public class Radar
 	{
 		public Vector3 size;
-		public Vector3 direction;
-		public float distance;
 		public Quaternion rotation;
 
 		public List< LayerMask > masks;
@@ -19,13 +17,11 @@ namespace chibi.radar
 		public List< Radar_hit > hits;
 
 		public Radar(
-			Transform origin, Vector3 size, Vector3 direction, float distance,
-			Quaternion rotation, List<LayerMask> masks )
+			Transform origin, Vector3 size, Quaternion rotation,
+			List<LayerMask> masks )
 		{
 			this.origin = origin;
 			this.size = size;
-			this.direction = direction;
-			this.distance = distance;
 			this.rotation = rotation;
 			this.masks = masks;
 

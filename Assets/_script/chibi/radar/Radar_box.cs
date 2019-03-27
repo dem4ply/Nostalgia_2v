@@ -7,19 +7,19 @@ namespace chibi.radar
 	public class Radar_box : Radar
 	{
 		public Radar_box(
-			Transform origin, Vector3 size, Vector3 direction, float distance,
-			Quaternion rotation, List<LayerMask> masks )
-			: base( origin, size, direction, distance, rotation, masks )
+			Transform origin, Vector3 size, Quaternion rotation, List<LayerMask> masks )
+			: base( origin, size, rotation, masks )
 		{
 		}
 
 		public override void ping()
 		{
+			var half_size = size * 0.5f;
 			foreach ( LayerMask mask in masks )
 			{
-				RaycastHit[] current_hits = Physics.BoxCastAll(
-					origin.position, size, direction, rotation, distance, mask.value );
-
+				// helper.draw.cube.debug( origin.position, size, Color.yellow, 1f );
+				var current_hits = Physics.OverlapBox(
+					origin.position, half_size, rotation, mask.value );
 				List<Radar_hit> results;
 				if ( masks_hits.TryGetValue( mask, out results ) )
 				{
@@ -42,7 +42,6 @@ namespace chibi.radar
 						hits.Add( current_radar_hit );
 					}
 				}
-
 				if ( results.Count == 0 )
 					masks_hits.Remove( mask );
 			}

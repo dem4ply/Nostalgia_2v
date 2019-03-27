@@ -20,5 +20,11 @@ namespace chibi.radar
 			this.transform = hit.transform;
 			this.distance = hit.distance;
 		}
+
+		public Radar_hit( Collider hit )
+		{
+			this.transform = hit.transform;
+			this.distance = 0f;
+		}
 	}
 }

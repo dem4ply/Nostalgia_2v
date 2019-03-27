@@ -11,5 +11,19 @@ namespace helper
 			var damage_layer_in_bit = 1 << obj.layer;
 			return ( mask.value & damage_layer_in_bit ) > 0;
 		}
+
+		public static LayerMask def
+		{
+			get {
+				return LayerMask.GetMask( "Default" );
+			}
+		}
+
+		public static LayerMask item
+		{
+			get {
+				return LayerMask.GetMask( "item" );
+			}
+		}
 	}
 }

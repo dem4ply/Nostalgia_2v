@@ -70,6 +70,18 @@ namespace helper
 				return null;
 			}
 
+			public static ( Transform, Transform ) _(
+				Transform obj, string name1, string name2 )
+			{
+				return ( _( obj, name1 ), _( obj, name2 ) );
+			}
+			public static ( Transform, Transform, Transform ) _(
+				Transform obj, string name1, string name2, string name3 )
+			{
+				return (
+					_( obj, name1 ), _( obj, name2 ), _( obj, name3 ) );
+			}
+
 			public static T _<T>( GameObject obj, string name )
 				where T : MonoBehaviour
 			{
