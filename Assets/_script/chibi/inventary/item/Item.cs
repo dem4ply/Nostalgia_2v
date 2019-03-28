@@ -18,5 +18,10 @@ namespace chibi.inventory.item
 				return max_stack_amount > 1;
 			}
 		}
+
+		public virtual bool use( chibi.rol_sheet.Rol_sheet rol_sheet )
+		{
+			throw new System.NotImplementedException();
+		}
 	}
 }
