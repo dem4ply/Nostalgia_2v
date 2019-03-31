@@ -20,6 +20,7 @@ namespace chibi.systems.rol_sheet
 				foreach ( var buff_attacher in rol_sheet.buffos )
 				{
 					buff_attacher.total_duration += delta_time;
+					buff_attacher.delta_sigma += delta_time;
 				}
 				rol_sheet.clean();
 			}

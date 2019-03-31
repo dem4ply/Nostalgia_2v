@@ -22,6 +22,9 @@ namespace chibi.rol_sheet
 			get {
 				return _raw_hp;
 			}
+			set {
+				_raw_hp = value;
+			}
 		}
 
 		public float hp

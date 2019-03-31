@@ -6,6 +6,7 @@ using UnityEngine.TestTools;
 using helper.test.assert;
 using chibi.controller.ai;
 using chibi.controller.npc;
+using rol_sheet;
 
 namespace tests.controller.npc.soldier.isometric
 {
@@ -30,7 +31,7 @@ namespace tests.controller.npc.soldier.isometric
 					"assert right", "assert jump 1" );
 
 			ai = helper.game_object.Find._<Ai_walk>( scene, "npc" );
-			ai.gameObject.AddComponent<rol_sheet.Rol_sheet>();
+			ai.gameObject.AddComponent<Rol_sheet>();
 			var soldier = ai.gameObject.AddComponent<Soldier_controller>();
 			soldier.npc = ai.controller as Controller_npc;
 			ai.controller = soldier;

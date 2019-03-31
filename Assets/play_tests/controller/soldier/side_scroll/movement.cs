@@ -6,6 +6,7 @@ using UnityEngine.TestTools;
 using helper.test.assert;
 using chibi.controller.npc;
 using chibi.controller.ai;
+using rol_sheet;
 
 namespace tests.controller.npc.soldier.side_scroll
 {
@@ -30,7 +31,7 @@ namespace tests.controller.npc.soldier.side_scroll
 					"assert right" );
 
 			ai = helper.game_object.Find._<Ai_walk>( scene, "npc" );
-			ai.gameObject.AddComponent<rol_sheet.Rol_sheet>();
+			ai.gameObject.AddComponent<Rol_sheet>();
 			var soldier = ai.gameObject.AddComponent<Soldier_controller>();
 			soldier.npc = ai.controller as Controller_npc;
 			ai.controller = soldier;

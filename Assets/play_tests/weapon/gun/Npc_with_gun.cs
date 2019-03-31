@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.TestTools;
 using helper.test.assert;
 using damage;
+using rol_sheet;
 
 namespace tests.controller.weapon.gun
 {
@@ -36,7 +37,7 @@ namespace tests.controller.weapon.gun
 		[UnityTest]
 		public IEnumerator when_set_the_owner_of_the_gun_should_be_seted_to_each_bullet()
 		{
-			var rol = npc.GetComponent<rol_sheet.Rol_sheet>();
+			var rol = npc.GetComponent<Rol_sheet>();
 			gun.owner = rol;
 			var bullet = gun.shot();
 			yield return new WaitForSeconds( 1 );
@@ -48,7 +49,7 @@ namespace tests.controller.weapon.gun
 		[UnityTest]
 		public IEnumerator when_remove_the_owner_the_new_damange_should_be_null()
 		{
-			var rol = npc.GetComponent<rol_sheet.Rol_sheet>();
+			var rol = npc.GetComponent<Rol_sheet>();
 			gun.owner = rol;
 			var bullet = gun.shot();
 			yield return new WaitForSeconds( 1 );

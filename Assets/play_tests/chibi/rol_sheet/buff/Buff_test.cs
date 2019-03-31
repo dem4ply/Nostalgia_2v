@@ -7,11 +7,11 @@ using helper.test.assert;
 using chibi.rol_sheet;
 using chibi.rol_sheet.buff.health;
 
-namespace tests.radar
+namespace tests.rol_sheet.buff
 {
-	public class Rol_sheet_test : helper.tests.Scene_test
+	public class Buff_test : helper.tests.Scene_test
 	{
-		Rol_sheet rol_sheet;
+		public Rol_sheet rol_sheet;
 
 		public override string scene_dir
 		{
@@ -27,11 +27,16 @@ namespace tests.radar
 			Assert.IsTrue( rol_sheet );
 		}
 
+		public virtual chibi.rol_sheet.buff.Buff create_buff()
+		{
+			return Health_restore.CreateInstance<Health_restore>();
+		}
+
 		[UnityTest]
 		public IEnumerator when_start_the_radar_should_be_empty()
 		{
 			yield return new WaitForSeconds( 0.1f );
-			var buff = Health_restore.CreateInstance<Health_restore>();
+			var buff = create_buff();
 			rol_sheet.attach_buff( buff );
 			var attacher = rol_sheet.buffos.Find( x => x.buff == buff );
 			Assert.IsNotNull( attacher );
@@ -42,7 +47,7 @@ namespace tests.radar
 		public IEnumerator when_finish_is_period_should_be_remove()
 		{
 			yield return new WaitForSeconds( 0.1f );
-			var buff = Health_restore.CreateInstance<Health_restore>();
+			var buff = create_buff();
 			buff.duration = 1f;
 			rol_sheet.attach_buff( buff );
 			yield return new WaitForSeconds( 2f );
@@ -55,7 +60,7 @@ namespace tests.radar
 		public IEnumerator if_no_have_limit_should_no_be_remove()
 		{
 			yield return new WaitForSeconds( 0.1f );
-			var buff = Health_restore.CreateInstance<Health_restore>();
+			var buff = create_buff();
 			buff.duration = 1f;
 			buff.no_duration_limit = true;
 			rol_sheet.attach_buff( buff );

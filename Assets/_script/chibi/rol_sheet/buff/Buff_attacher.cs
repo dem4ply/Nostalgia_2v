@@ -9,7 +9,7 @@ namespace chibi.rol_sheet.buff
 		[ SerializeField ]
 		public Buff buff;
 		public float _total_duration = 0f;
-		public float delta_sigma = 0f;
+		protected float _delta_sigma = 0f;
 
 		public chibi.rol_sheet.Rol_sheet rol_sheet;
 
@@ -27,15 +27,23 @@ namespace chibi.rol_sheet.buff
 
 			set {
 				_total_duration = value;
-				delta_sigma = value;
-				if ( buff.delta > delta_sigma )
-				{
-					effect_in_rol_sheet();
-					delta_sigma -= buff.delta;
-				}
-
 				if ( total_duration > buff.duration )
 					unattach();
+			}
+		}
+
+		public float delta_sigma
+		{
+			get {
+				return _delta_sigma;
+			}
+			set {
+				_delta_sigma = value;
+				if ( delta_sigma > buff.delta )
+				{
+					effect_in_rol_sheet();
+					_delta_sigma -= buff.delta;
+				}
 			}
 		}
 
