@@ -34,7 +34,34 @@ namespace tests.radar
 			var buff = Health_restore.CreateInstance<Health_restore>();
 			rol_sheet.attach_buff( buff );
 			var attacher = rol_sheet.buffos.Find( x => x.buff == buff );
-			Assert.NotNull( attacher );
+			Assert.IsNotNull( attacher );
+			yield return new WaitForSeconds( 0.1f );
+		}
+
+		[UnityTest]
+		public IEnumerator when_finish_is_period_should_be_remove()
+		{
+			yield return new WaitForSeconds( 0.1f );
+			var buff = Health_restore.CreateInstance<Health_restore>();
+			buff.duration = 1f;
+			rol_sheet.attach_buff( buff );
+			yield return new WaitForSeconds( 2f );
+			var attacher = rol_sheet.buffos.Find( x => x.buff == buff );
+			Assert.IsNull( attacher );
+			yield return new WaitForSeconds( 0.1f );
+		}
+
+		[UnityTest]
+		public IEnumerator if_no_have_limit_should_no_be_remove()
+		{
+			yield return new WaitForSeconds( 0.1f );
+			var buff = Health_restore.CreateInstance<Health_restore>();
+			buff.duration = 1f;
+			buff.no_duration_limit = true;
+			rol_sheet.attach_buff( buff );
+			yield return new WaitForSeconds( 2f );
+			var attacher = rol_sheet.buffos.Find( x => x.buff == buff );
+			Assert.IsNull( attacher );
 			yield return new WaitForSeconds( 0.1f );
 		}
 	}

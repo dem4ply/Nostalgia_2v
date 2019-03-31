@@ -6,11 +6,11 @@ namespace chibi.rol_sheet.buff
 	[ CreateAssetMenu( menuName="chibi/rol sheet/buff/base" ) ]
 	public abstract class Buff : chibi.Chibi_object
 	{
-		public float total_delta = 0.05f;
+		public float delta = 0.05f;
 		public float duration = 1f;
 		public bool no_duration_limit = false;
 
-		public void effect_in_rol_sheet( Rol_sheet rol_sheet )
+		public virtual void effect_in_rol_sheet( Rol_sheet rol_sheet )
 		{
 			Debug.Log( string.Format(
 				"se calcula el efecto de '{0}' a {1}",
@@ -18,7 +18,7 @@ namespace chibi.rol_sheet.buff
 				rol_sheet.gameObject );
 		}
 
-		public void attach( Rol_sheet rol_sheet )
+		public virtual void attach( Rol_sheet rol_sheet )
 		{
 			Debug.Log( string.Format(
 				"se agrega el buffo '{0}' a {1}",
@@ -26,7 +26,7 @@ namespace chibi.rol_sheet.buff
 				rol_sheet.gameObject );
 		}
 
-		public void unattach( Rol_sheet rol_sheet )
+		public virtual void unattach( Rol_sheet rol_sheet )
 		{
 			Debug.Log( string.Format(
 				"se remueve el buffo '{0}' a {1}",

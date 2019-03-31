@@ -21,6 +21,7 @@ namespace chibi.systems.rol_sheet
 				{
 					buff_attacher.total_duration += delta_time;
 				}
+				rol_sheet.clean();
 			}
 		}
 	}

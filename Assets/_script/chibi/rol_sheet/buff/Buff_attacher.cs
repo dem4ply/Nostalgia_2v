@@ -28,10 +28,10 @@ namespace chibi.rol_sheet.buff
 			set {
 				_total_duration = value;
 				delta_sigma = value;
-				if ( buff.total_delta > delta_sigma )
+				if ( buff.delta > delta_sigma )
 				{
 					effect_in_rol_sheet();
-					delta_sigma -= buff.total_delta;
+					delta_sigma -= buff.delta;
 				}
 
 				if ( total_duration > buff.duration )
@@ -51,7 +51,7 @@ namespace chibi.rol_sheet.buff
 
 		public void unattach()
 		{
-			buff.unattach( rol_sheet );
+			rol_sheet.unattach_buff( this );
 		}
 	}
 }
