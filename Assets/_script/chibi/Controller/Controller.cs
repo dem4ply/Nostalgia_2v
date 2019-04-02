@@ -15,6 +15,8 @@ namespace chibi.controller
 		public motor.Motor motor;
 		public actuator.Actuador_controller actuator_controller;
 
+		public bool pasive_motor;
+
 		public virtual Vector3 desire_direction
 		{
 			get {
@@ -66,11 +68,17 @@ namespace chibi.controller
 			motor = GetComponent<motor.Motor>();
 			if ( !motor )
 			{
-				Debug.LogError(
-					string.Format(
-						"no se encontro un motor en el object {0}" +
-						"se agrega un motor", name ) );
+				Debug.LogError( string.Format(
+					"no se encontro un motor en el object {0}" +
+					"se agrega un motor",
+					helper.game_object.name.full( this ) ),
+					gameObject );
 				motor = gameObject.AddComponent<motor.Motor>();
+			}
+			if ( pasive_motor )
+			{
+				var rigidbody = GetComponent<Rigidbody>();
+				rigidbody.useGravity = false;
 			}
 		}
 
