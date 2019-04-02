@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 using controller.animator;
 using controller.motor;
 using controller.controllers;
@@ -26,6 +26,12 @@ namespace chibi.joystick
 		public float dead_zone_esdf_axis = 0.01f;
 		public float dead_zone_mouse_axis = 0.01f;
 		public float dead_zone_mouse_wheel = 0.01f;
+
+		public List<string> actions = new List<string>() {
+			"fire1",
+			"fire2",
+			"fire3",
+		};
 		#endregion
 
 		#region public properties
@@ -78,6 +84,13 @@ namespace chibi.joystick
 			{
 				controller.desire_direction = Vector3.zero;
 				controller.speed = 0f;
+			}
+			foreach ( string action in actions )
+			{
+				if ( check_action_down( action ) )
+					controller.action( action, "down" );
+				if ( check_action_up( action ) )
+					controller.action( action, "up" );
 			}
 			/*
 			controller.is_running = run_key;
@@ -138,18 +151,21 @@ namespace chibi.joystick
 		/// <summary>
 		/// revisa si el boton de fire se preciono, no es un auto fire
 		/// </summary>
-		/// <param name="fire_number">numero de boton de fire</param>
+		/// <param name="action"></param>
 		/// <returns></returns>
-		protected bool _fire_key_down( int fire_number )
+		protected bool _fire_key_down( string action )
 		{
-			string fire_key = string.Format( "fire_{0}", fire_number );
-			return Input.GetButtonDown( fire_key );
+			return Input.GetButtonDown( action );
 		}
 
-		protected bool _fire_key_up( int fire_number )
+		/// <summary>
+		/// revisa si el boton de fire se libero
+		/// </summary>
+		/// <param name="action"></param>
+		/// <returns></returns>
+		protected bool _fire_key_up( string action )
 		{
-			string fire_key = string.Format( "fire_{0}", fire_number );
-			return Input.GetButtonUp( fire_key );
+			return Input.GetButtonUp( action );
 		}
 
 		protected bool _left_bumper_key_down()
@@ -205,6 +221,16 @@ namespace chibi.joystick
 		protected virtual void _draw_debug()
 		{
 			debug.draw.arrow( axis_esdf );
+		}
+
+		protected virtual bool check_action_down( string action )
+		{
+			return Input.GetButtonDown( action );
+		}
+
+		protected virtual bool check_action_up( string action )
+		{
+			return Input.GetButtonUp( action );
 		}
 		#endregion
 	}

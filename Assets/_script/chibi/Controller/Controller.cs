@@ -56,6 +56,14 @@ namespace chibi.controller
 			}
 		}
 
+		public virtual void action( string name, string e )
+		{
+			Debug.Log( string.Format(
+				"[{0}] action '{1}' with the event '{2}'",
+				helper.game_object.name.full( this ), name, e
+			) );
+		}
+
 		protected override void _init_cache()
 		{
 			base._init_cache();
