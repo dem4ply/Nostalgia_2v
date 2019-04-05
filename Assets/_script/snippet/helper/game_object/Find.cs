@@ -174,6 +174,13 @@ namespace helper
 				GameObject[] result = GameObject.FindObjectsOfType<GameObject>();
 				return result.Where( obj => obj.name == name ).ToArray();
 			}
+
+			public static GameObject[] all_regex( string regex )
+			{
+				GameObject[] result = GameObject.FindObjectsOfType<GameObject>();
+				var r = new Regex( regex, RegexOptions.Compiled );
+				return result.Where( obj => r.IsMatch( obj.name ) ).ToArray();
+			}
 		}
 	}
 }
