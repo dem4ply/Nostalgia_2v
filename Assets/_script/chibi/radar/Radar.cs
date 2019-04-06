@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 namespace chibi.radar
 {
+	[System.Serializable]
 	public class Radar
 	{
 		public Vector3 size;
@@ -15,6 +16,13 @@ namespace chibi.radar
 
 		public Dictionary< LayerMask, List< Radar_hit > > masks_hits;
 		public List< Radar_hit > hits;
+
+		public Radar( Radar radar )
+			: this( radar.origin, radar.size, radar.rotation, radar.masks )
+		{
+			masks_hits = new Dictionary<LayerMask, List<Radar_hit>>();
+			hits = new List< Radar_hit >();
+		}
 
 		public Radar(
 			Transform origin, Vector3 size, Quaternion rotation,

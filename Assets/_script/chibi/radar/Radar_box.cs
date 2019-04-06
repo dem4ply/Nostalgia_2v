@@ -4,8 +4,13 @@ using System;
 
 namespace chibi.radar
 {
+	[System.Serializable]
 	public class Radar_box : Radar
 	{
+
+		public Radar_box( Radar_box radar ) : base( radar )
+		{
+		}
 		public Radar_box(
 			Transform origin, Vector3 size, Quaternion rotation, List<LayerMask> masks )
 			: base( origin, size, rotation, masks )
@@ -15,6 +20,7 @@ namespace chibi.radar
 		public override void ping()
 		{
 			var half_size = size * 0.5f;
+			hits.Clear();
 			foreach ( LayerMask mask in masks )
 			{
 				// helper.draw.cube.debug( origin.position, size, Color.yellow, 1f );
