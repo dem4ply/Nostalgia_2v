@@ -15,7 +15,8 @@ namespace chibi.inventory
 
 		public void use( chibi.rol_sheet.Rol_sheet character )
 		{
-			throw new System.NotImplementedException();
+			Debug.Log( item.name );
+			item.use( character );
 		}
 
 		protected override void _init_cache()
