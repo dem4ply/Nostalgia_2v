@@ -15,6 +15,12 @@ namespace chibi.motor
 		public float max_speed = 4f;
 		public unsigned_vector3 period_to_desice_direction;
 
+		public bool is_steering = false;
+
+		public float steering_mass = 1f;
+		protected Vector3 smooth_velocity = Vector3.zero;
+		public Vector3 velocity_acceleration = Vector3.zero;
+
 		private Vector3 _desire_direction;
 
 
@@ -32,8 +38,33 @@ namespace chibi.motor
 		public virtual Vector3 desire_velocity
 		{
 			get {
-				return desire_direction.normalized
+				var desire_speed_vector = desire_direction.normalized
 					* Mathf.Clamp( desire_speed, 0, max_speed );
+
+				debug.draw.arrow( desire_speed_vector, Color.magenta );
+				float final_x = Mathf.SmoothDamp(
+					velocity.x, desire_speed_vector.x,
+					ref smooth_velocity.x, velocity_acceleration.x );
+
+				float final_y = Mathf.SmoothDamp(
+					velocity.y, desire_speed_vector.y,
+					ref smooth_velocity.y, velocity_acceleration.y );
+
+				float final_z = Mathf.SmoothDamp(
+					velocity.z, desire_speed_vector.z,
+					ref smooth_velocity.z, velocity_acceleration.z );
+
+				var final_speed = new Vector3( final_x, final_y, final_z );
+				debug.draw.arrow( final_speed, Color.blue );
+				if ( is_steering )
+				{
+					var steering = final_speed - velocity;
+					steering /= steering_mass;
+					debug.draw.arrow( velocity + steering, Color.yellow );
+					return ( velocity + steering );
+				}
+				else
+					return final_speed;
 			}
 		}
 
