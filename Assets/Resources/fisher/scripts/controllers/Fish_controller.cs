@@ -32,6 +32,7 @@ namespace fisher.controller
 			{
 				var item = hit.transform.GetComponent< chibi.inventory.Item >();
 				item.use( rol );
+				Destroy( item.gameObject );
 			}
 		}
 
