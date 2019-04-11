@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 using controller;
 using chibi.controller.actuator;
 using Unity.Entities;
 using System;
+using System.Linq;
 
 namespace chibi.controller.steering
 {
@@ -11,12 +12,12 @@ namespace chibi.controller.steering
 	{
 		public Transform target;
 		public Controller controller;
-		public behavior.Behavior behavior;
+		public List<behavior.Behavior> behaviors;
 
 		protected override void _init_cache()
 		{
 			base._init_cache();
-			if ( !behavior )
+			if ( !behaviors.Any() )
 			{
 				Debug.LogWarning( string.Format(
 					"el steering controller de '{0}' no tiene behavior",

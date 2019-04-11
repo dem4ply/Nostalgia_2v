@@ -12,16 +12,21 @@ namespace chibi.systems.controller
 
 		protected override void OnUpdate()
 		{
-			float delta_time = Time.deltaTime;
 			foreach ( var entity in GetEntities<group>() )
 			{
-				var behavior = entity.sterring.behavior;
-				var desire_direction = behavior.desire_direction(
-					entity.sterring.controller, entity.sterring.target );
-				var desire_speed = behavior.desire_speed(
-					entity.sterring.controller, entity.sterring.target );
-
+				Vector3 desire_direction = Vector3.zero;
+				float desire_speed = 1f;
 				var controller = entity.sterring.controller;
+
+				foreach ( var behavior in entity.sterring.behaviors )
+				{
+					var behavior_direction = behavior.desire_direction(
+						entity.sterring.controller, entity.sterring.target );
+
+					behavior_direction *= behavior.weight;
+					desire_direction += behavior_direction;
+				}
+
 				controller.desire_direction = desire_direction;
 
 				desire_speed = controller.motor.max_speed * desire_speed;

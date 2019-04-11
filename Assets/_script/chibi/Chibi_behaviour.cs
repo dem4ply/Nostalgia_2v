@@ -9,7 +9,7 @@ namespace chibi {
 		protected bool _is_instanciate;
 
 		public bool debug_mode = false;
-		protected helper.debug.Debug debug;
+		public helper.debug.Debug debug;
 
 		protected virtual void Awake()
 		{

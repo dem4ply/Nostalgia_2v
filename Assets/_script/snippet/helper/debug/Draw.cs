@@ -98,6 +98,15 @@ namespace helper
 					Vector3 direction = to_position - _instance.transform.position;
 					arrow( _instance.transform.position, direction, color );
 				}
+
+				public void sphere(
+					Vector3 position, Color color, float radius, float duration=0,
+					bool depth_test=true )
+				{
+					if ( debuging )
+						helper.draw.sphere.debug(
+							position, color, radius, duration, depth_test );
+				}
 			}
 		}
 	}

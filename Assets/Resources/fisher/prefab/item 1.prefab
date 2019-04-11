@@ -208,7 +208,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5388755b465cd8e4c909890a330a8d0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debug_mode: 0
+  debug_mode: 1
   motor: {fileID: 0}
   actuator_controller: {fileID: 0}
   pasive_motor: 0
@@ -227,4 +227,5 @@ MonoBehaviour:
   debug_mode: 0
   target: {fileID: 0}
   controller: {fileID: 8409895491627135446}
-  behavior: {fileID: 11400000, guid: fff42a07bb6e3af4197a48793a5ac9c1, type: 2}
+  behaviors:
+  - {fileID: 11400000, guid: fff42a07bb6e3af4197a48793a5ac9c1, type: 2}
