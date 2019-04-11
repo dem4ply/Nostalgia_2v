@@ -512,7 +512,7 @@ PrefabInstance:
     - target: {fileID: 3673225459236046202, guid: 03c74e0b2c649a54eaa9b2829978b52c,
         type: 3}
       propertyPath: debug_mode
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3673225459236046202, guid: 03c74e0b2c649a54eaa9b2829978b52c,
         type: 3}
@@ -529,6 +529,12 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 2094099886}
+    - target: {fileID: 8597211190022079670, guid: 03c74e0b2c649a54eaa9b2829978b52c,
+        type: 3}
+      propertyPath: behaviors.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: f66704eeded275e48a2c5fb5b18fbbb8,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 03c74e0b2c649a54eaa9b2829978b52c, type: 3}
 --- !u!1001 &594227362
