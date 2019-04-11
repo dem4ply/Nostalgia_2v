@@ -21,7 +21,6 @@ namespace chibi.controller.steering.behavior
 
 			Quaternion rotation = helper.random.quaternion._();
 			Vector3 direction = rotation * Vector3.one;
-			Debug.Log( "sdfsadfasd" );
 			var result = seek(
 				controller, circle_position + ( direction * circle_radius ) );
 			debug(
@@ -39,8 +38,6 @@ namespace chibi.controller.steering.behavior
 			Controller controller, Transform target, Vector3 circle_position,
 			Vector3 direction, Vector3 seek_direction )
 		{
-			Debug.Log( controller.debug_mode );
-			Debug.Log( controller, controller );
 			controller.debug.draw.line( circle_position, debug_color );
 			controller.debug.draw.sphere(
 				circle_position, debug_color, circle_radius );
