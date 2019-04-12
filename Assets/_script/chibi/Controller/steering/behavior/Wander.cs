@@ -11,8 +11,48 @@ namespace chibi.controller.steering.behavior
 	{
 		public float circle_distance = 1f;
 		public float circle_radius = 1f;
+		public float frequency = 1f;
 
 		public override Vector3 desire_direction(
+			Controller controller, Transform target,
+			Steering_properties properties )
+		{
+			if ( properties.time > frequency )
+			{
+				properties.last_target = find_a_new_target(
+					controller, target );
+				properties.time -= frequency;
+			}
+			var result = seek( controller, properties.last_target );
+			debug_seek( controller, result );
+			return result;
+		}
+
+		public override float desire_speed(
+			Controller controller, Transform target,
+			Steering_properties properties )
+		{
+			return 1f;
+		}
+
+		public virtual void debug_seek(
+			Controller controller, Vector3 seek_direction )
+		{
+			controller.debug.draw.arrow( seek_direction, seek_color );
+		}
+
+		public virtual void debug_find_new_target(
+			Controller controller, Transform target, Vector3 circle_position,
+			Vector3 direction )
+		{
+			controller.debug.draw.line( circle_position, debug_color );
+			controller.debug.draw.sphere(
+				circle_position, debug_color, circle_radius, 0.1f );
+			controller.debug.draw.arrow(
+				circle_position, direction, debug_color );
+		}
+
+		protected virtual Vector3 find_a_new_target(
 			Controller controller, Transform target )
 		{
 			var circle_position = 
@@ -21,31 +61,9 @@ namespace chibi.controller.steering.behavior
 
 			Quaternion rotation = helper.random.quaternion._();
 			Vector3 direction = rotation * Vector3.one;
-			var result = seek(
-				controller, circle_position + ( direction * circle_radius ) );
-			debug(
-				controller, target, circle_position, direction, result );
-			return result;
-		}
-
-		public override float desire_speed(
-			Controller controller, Transform target )
-		{
-			return 1f;
-		}
-
-		public virtual void debug(
-			Controller controller, Transform target, Vector3 circle_position,
-			Vector3 direction, Vector3 seek_direction )
-		{
-			controller.debug.draw.line( circle_position, debug_color );
-			controller.debug.draw.sphere(
-				circle_position, debug_color, circle_radius );
-			controller.debug.draw.arrow(
-				circle_position, direction, debug_color );
-
-			controller.debug.draw.arrow( seek_direction, seek_color );
-
+			debug_find_new_target(
+				controller, target, circle_position, direction );
+			return circle_position + ( direction * circle_radius );
 		}
 	}
 }

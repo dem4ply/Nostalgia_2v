@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using Unity.Entities;
+using System.Linq;
 
 namespace chibi.systems.controller
 {
@@ -12,16 +13,19 @@ namespace chibi.systems.controller
 
 		protected override void OnUpdate()
 		{
+			float delta_time = Time.deltaTime;
 			foreach ( var entity in GetEntities<group>() )
 			{
 				Vector3 desire_direction = Vector3.zero;
 				float desire_speed = 1f;
 				var controller = entity.sterring.controller;
 
-				foreach ( var behavior in entity.sterring.behaviors )
+				foreach ( var ( behavior, properties ) in entity.sterring.zip() )
 				{
+					properties.time += delta_time;
 					var behavior_direction = behavior.desire_direction(
-						entity.sterring.controller, entity.sterring.target );
+						entity.sterring.controller, entity.sterring.target,
+						properties );
 
 					behavior_direction *= behavior.weight;
 					desire_direction += behavior_direction;

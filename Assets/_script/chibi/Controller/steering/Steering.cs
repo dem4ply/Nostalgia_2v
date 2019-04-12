@@ -13,6 +13,7 @@ namespace chibi.controller.steering
 		public Transform target;
 		public Controller controller;
 		public List<behavior.Behavior> behaviors;
+		public List<Steering_properties> behaviors_properties;
 
 		protected override void _init_cache()
 		{
@@ -24,6 +25,19 @@ namespace chibi.controller.steering
 					helper.game_object.name.full( this )
 				) );
 			}
+			behaviors_properties = new List<Steering_properties>( behaviors.Count );
+
+			for ( int i = 0; i < behaviors.Count; ++i )
+			{
+				behaviors_properties.Add( new Steering_properties() );
+			}
+		}
+
+		public IEnumerable<(behavior.Behavior, Steering_properties)> zip()
+		{
+			return behaviors.Zip(
+				behaviors_properties,
+				( behavior, properties ) => ( behavior, properties ) );
 		}
 	}
 }
