@@ -14,15 +14,15 @@ namespace chibi.controller.steering.behavior
 		public Color seek_color;
 
 		public abstract Vector3 desire_direction(
-			Controller controller, Transform target,
+			Steering controller, Transform target,
 			Steering_properties properties );
 
 		public abstract float desire_speed(
-			Controller controller, Transform target,
+			Steering controller, Transform target,
 			Steering_properties properties );
 
 		public virtual void debug(
-			Controller controller, Transform target,
+			Steering controller, Transform target,
 			Steering_properties properties )
 		{
 			Debug.Log( string.Format(
@@ -31,12 +31,12 @@ namespace chibi.controller.steering.behavior
 			) );
 		}
 
-		public Vector3 seek( Controller controller, Vector3 target )
+		public Vector3 seek( Steering controller, Vector3 target )
 		{
 			return target - controller.transform.position;
 		}
 
-		public Vector3 flee( Controller controller, Vector3 target )
+		public Vector3 flee( Steering controller, Vector3 target )
 		{
 			return controller.transform.position - target;
 		}

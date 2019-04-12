@@ -24,7 +24,7 @@ namespace chibi.systems.controller
 				{
 					properties.time += delta_time;
 					var behavior_direction = behavior.desire_direction(
-						entity.sterring.controller, entity.sterring.target,
+						entity.sterring, entity.sterring.target,
 						properties );
 
 					behavior_direction *= behavior.weight;

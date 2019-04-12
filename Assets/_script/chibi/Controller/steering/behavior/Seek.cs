@@ -11,17 +11,17 @@ namespace chibi.controller.steering.behavior
 	public class Seek : chibi.controller.steering.behavior.Behavior
 	{
 		public override Vector3 desire_direction(
-			Controller controller, Transform target,
+			Steering controller, Transform target,
 			Steering_properties properties )
 		{
 			var direction = seek( controller, target.position );
 			direction.Normalize();
-			debug( controller, target, direction );
+			debug( controller.controller, target, direction );
 			return direction.normalized;
 		}
 
 		public override float desire_speed(
-			Controller controller, Transform target,
+			Steering controller, Transform target,
 			Steering_properties properties )
 		{
 			return 1f;

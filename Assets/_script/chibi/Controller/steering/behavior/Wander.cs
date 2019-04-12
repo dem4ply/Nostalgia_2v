@@ -14,7 +14,7 @@ namespace chibi.controller.steering.behavior
 		public float frequency = 1f;
 
 		public override Vector3 desire_direction(
-			Controller controller, Transform target,
+			Steering controller, Transform target,
 			Steering_properties properties )
 		{
 			if ( properties.time > frequency )
@@ -24,12 +24,12 @@ namespace chibi.controller.steering.behavior
 				properties.time -= frequency;
 			}
 			var result = seek( controller, properties.last_target );
-			debug_seek( controller, result );
+			debug_seek( controller.controller, result );
 			return result;
 		}
 
 		public override float desire_speed(
-			Controller controller, Transform target,
+			Steering controller, Transform target,
 			Steering_properties properties )
 		{
 			return 1f;
@@ -42,7 +42,7 @@ namespace chibi.controller.steering.behavior
 		}
 
 		public virtual void debug_find_new_target(
-			Controller controller, Transform target, Vector3 circle_position,
+			Steering controller, Transform target, Vector3 circle_position,
 			Vector3 direction )
 		{
 			controller.debug.draw.line( circle_position, debug_color );
@@ -53,10 +53,10 @@ namespace chibi.controller.steering.behavior
 		}
 
 		protected virtual Vector3 find_a_new_target(
-			Controller controller, Transform target )
+			Steering controller, Transform target )
 		{
 			var circle_position = 
-				controller.motor.velocity.normalized * circle_distance;
+				controller.controller.motor.velocity.normalized * circle_distance;
 			circle_position += controller.transform.position;
 
 			Quaternion rotation = helper.random.quaternion._();
