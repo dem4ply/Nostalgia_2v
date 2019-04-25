@@ -194,7 +194,7 @@ MonoBehaviour:
     _y: 0
     _z: 0
   is_steering: 1
-  steering_mass: 5
+  steering_mass: 20
   velocity_acceleration: {x: 0, y: 0, z: 0}
 --- !u!114 &8409895491627135446
 MonoBehaviour:
@@ -229,3 +229,4 @@ MonoBehaviour:
   controller: {fileID: 8409895491627135446}
   behaviors:
   - {fileID: 11400000, guid: fff42a07bb6e3af4197a48793a5ac9c1, type: 2}
+  - {fileID: 11400000, guid: f29012b63b3b4f948925543b05c468e3, type: 2}

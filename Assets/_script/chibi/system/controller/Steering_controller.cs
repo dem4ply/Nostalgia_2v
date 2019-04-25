@@ -27,10 +27,13 @@ namespace chibi.systems.controller
 						entity.sterring, entity.sterring.target,
 						properties );
 
+					if ( behavior_direction == Vector3.zero )
+						continue;
 					behavior_direction *= behavior.weight;
+					//entity.sterring.debug.draw.arrow( behavior_direction, Color.black );
 					desire_direction += behavior_direction;
 				}
-
+				entity.sterring.debug.draw.arrow( desire_direction, Color.black );
 				controller.desire_direction = desire_direction;
 
 				desire_speed = controller.motor.max_speed * desire_speed;

@@ -43,27 +43,34 @@ namespace helper
 				}
 
 				public void arrow(
-					Vector3 position, Vector3 direction, Color color )
+					Vector3 position, Vector3 direction, Color color,
+					float duration=0f )
 				{
 					if ( debuging )
-						helper.draw.arrow.debug( position, direction, color );
+						helper.draw.arrow.debug(
+							position, direction, color, duration:duration );
 				}
 
 				public void line(
-					Vector3 position, Vector3 to_position, Color color )
+					Vector3 position, Vector3 to_position, Color color,
+					float duration=0f )
 				{
 					if ( debuging )
-						UnityEngine.Debug.DrawLine( position, to_position, color );
+						UnityEngine.Debug.DrawLine(
+							position, to_position, color, duration:duration );
 				}
 
-				public void arrow( Vector3 direction, Color color )
+				public void arrow( Vector3 direction, Color color, float duration=0f )
 				{
-					arrow( _instance.transform.position, direction, color );
+					arrow( _instance.transform.position, direction, color, duration );
 				}
 
-				public void line( Vector3 to_position, Color color )
+				public void line(
+					Vector3 to_position, Color color, float duration=0f )
 				{
-					line( _instance.transform.position, to_position, color );
+					line(
+						_instance.transform.position, to_position, color,
+						duration:duration );
 				}
 
 				public void line( Vector3 to_position )
@@ -100,12 +107,21 @@ namespace helper
 				}
 
 				public void sphere(
-					Vector3 position, Color color, float radius, float duration=0,
+					Vector3 position, Color color, float radius, float duration=0f,
 					bool depth_test=true )
 				{
 					if ( debuging )
 						helper.draw.sphere.debug(
 							position, color, radius, duration, depth_test );
+				}
+
+				public void cube(
+					Vector3 position, Vector3 size, Color color,
+					float duration=0f )
+				{
+					if ( debuging )
+						helper.draw.cube.debug(
+							position, size, color, duration:duration );
 				}
 			}
 		}

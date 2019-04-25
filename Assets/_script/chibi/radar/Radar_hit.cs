@@ -21,10 +21,11 @@ namespace chibi.radar
 			this.distance = hit.distance;
 		}
 
-		public Radar_hit( Collider hit )
+		public Radar_hit( Collider hit, Transform origin )
 		{
 			this.transform = hit.transform;
-			this.distance = 0f;
+			this.distance = Vector3.Distance(
+				origin.position, transform.position );
 		}
 	}
 }

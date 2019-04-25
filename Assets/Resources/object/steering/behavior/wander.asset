@@ -15,5 +15,6 @@ MonoBehaviour:
   weight: 1
   debug_color: {r: 0, g: 0.060156345, b: 1, a: 1}
   seek_color: {r: 1, g: 0.868332, b: 0, a: 1}
-  circle_distance: 2
+  circle_distance: 3
   circle_radius: 1
+  frequency: 0.1

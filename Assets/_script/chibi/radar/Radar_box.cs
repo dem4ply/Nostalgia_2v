@@ -43,7 +43,7 @@ namespace chibi.radar
 					if ( current_hits[ i ].transform != origin )
 					{
 						Radar_hit current_radar_hit =
-							new Radar_hit( current_hits[i] );
+							new Radar_hit( current_hits[i], origin );
 						results.Add( current_radar_hit );
 						hits.Add( current_radar_hit );
 					}

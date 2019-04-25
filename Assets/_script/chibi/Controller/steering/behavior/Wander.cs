@@ -24,7 +24,7 @@ namespace chibi.controller.steering.behavior
 				properties.time -= frequency;
 			}
 			var result = seek( controller, properties.last_target );
-			debug_seek( controller.controller, result );
+			debug_seek( controller, result );
 			return result;
 		}
 
@@ -36,7 +36,7 @@ namespace chibi.controller.steering.behavior
 		}
 
 		public virtual void debug_seek(
-			Controller controller, Vector3 seek_direction )
+			Steering controller, Vector3 seek_direction )
 		{
 			controller.debug.draw.arrow( seek_direction, seek_color );
 		}
@@ -45,11 +45,12 @@ namespace chibi.controller.steering.behavior
 			Steering controller, Transform target, Vector3 circle_position,
 			Vector3 direction )
 		{
-			controller.debug.draw.line( circle_position, debug_color );
+			controller.debug.draw.line(
+				circle_position, debug_color, duration:0.1f );
 			controller.debug.draw.sphere(
 				circle_position, debug_color, circle_radius, 0.1f );
 			controller.debug.draw.arrow(
-				circle_position, direction, debug_color );
+				circle_position, direction, debug_color, duration:0.1f );
 		}
 
 		protected virtual Vector3 find_a_new_target(

@@ -29,7 +29,9 @@ namespace chibi.controller.steering
 
 			for ( int i = 0; i < behaviors.Count; ++i )
 			{
-				behaviors_properties.Add( new Steering_properties() );
+				Steering_properties propertie = new Steering_properties();
+				behaviors[ i ].prepare_properties( this, propertie );
+				behaviors_properties.Add( propertie );
 			}
 		}
 
