@@ -12,8 +12,9 @@ namespace chibi.radar
 		{
 		}
 		public Radar_box(
-			Transform origin, Vector3 size, Quaternion rotation, List<LayerMask> masks )
-			: base( origin, size, rotation, masks )
+			Transform origin, Vector3 size, Quaternion rotation, List<LayerMask> masks,
+			Predicate< Transform > filter = null )
+			: base( origin, size, rotation, masks, filter )
 		{
 		}
 
@@ -38,9 +39,13 @@ namespace chibi.radar
 					masks_hits.Add( mask, results );
 				}
 
+				Collider hit;
 				for ( int i = 0; i < current_hits.Length; ++i )
 				{
-					if ( current_hits[ i ].transform != origin )
+					hit = current_hits[ i ];
+					if ( filter == null )
+						Debug.Log( "" );
+					if ( hit.transform != origin && filter( hit.transform ) )
 					{
 						Radar_hit current_radar_hit =
 							new Radar_hit( current_hits[i], origin );

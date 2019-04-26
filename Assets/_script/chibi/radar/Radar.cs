@@ -17,16 +17,19 @@ namespace chibi.radar
 		public Dictionary< LayerMask, List< Radar_hit > > masks_hits;
 		public List< Radar_hit > hits;
 
+		public Predicate<Transform> filter;
+
 		public Radar( Radar radar )
 			: this( radar.origin, radar.size, radar.rotation, radar.masks )
 		{
 			masks_hits = new Dictionary<LayerMask, List<Radar_hit>>();
 			hits = new List< Radar_hit >();
+			this.filter = radar.filter;
 		}
 
 		public Radar(
 			Transform origin, Vector3 size, Quaternion rotation,
-			List<LayerMask> masks )
+			List<LayerMask> masks, Predicate< Transform > filter = null )
 		{
 			this.origin = origin;
 			this.size = size;
@@ -35,6 +38,10 @@ namespace chibi.radar
 
 			masks_hits = new Dictionary<LayerMask, List<Radar_hit>>();
 			hits = new List< Radar_hit >();
+			if ( filter == null )
+				this.filter = x => true;
+			else
+				this.filter = filter;
 		}
 
 		public virtual void ping()

@@ -138,5 +138,20 @@ namespace tests.radar
 			Assert.AreEqual( radar.masks_hits.Count, 0 );
 			yield return new WaitForSeconds( 0.1f );
 		}
+
+		[UnityTest]
+		public IEnumerator filter_should_skip_when_no_have_rigetbody()
+		{
+			yield return new WaitForSeconds( 0.1f );
+			List<LayerMask> masks = new List<LayerMask>();
+			masks.Add( helper.layer_mask.def );
+			masks.Add( helper.layer_mask.item );
+			var radar = new Radar_box(
+				def, Vector3.one * 3, Quaternion.identity, masks,
+				x => x.GetComponent<Rigidbody>() );
+			radar.ping();
+			Assert.AreEqual( 1, radar.hits.Count );
+			yield return new WaitForSeconds( 0.1f );
+		}
 	}
 }
